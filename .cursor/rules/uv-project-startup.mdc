@@ -1,0 +1,74 @@
+---
+alwaysApply: true
+description: 使用uv启动项目的规则
+---
+
+# 项目启动规则
+
+本项目使用 `uv` 作为 Python 包管理器和项目运行器。
+
+## 启动 FastAPI 应用
+
+**始终使用 `uv run` 来启动项目**，而不是直接使用 `python` 或 `uvicorn`。
+
+### 推荐的启动命令
+
+```bash
+# 开发模式启动（带自动重载）
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+# 生产模式启动
+uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+# 自定义端口启动
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 9000
+```
+
+### 使用启动脚本
+
+项目提供了 [run.py](mdc:run.py) 启动脚本，它内部也使用 `uv run`：
+
+```bash
+# 使用启动脚本（推荐）
+python run.py --mode dev
+
+# 或者直接使用 uv run
+uv run python run.py --mode dev
+```
+
+### 为什么使用 uv run
+
+1. **环境隔离**：确保使用项目虚拟环境中的依赖
+2. **依赖管理**：自动处理包版本和依赖关系
+3. **一致性**：团队成员使用相同的运行环境
+4. **性能**：uv 比传统的 pip/venv 更快
+
+### 不要使用的命令
+
+❌ 避免直接使用：
+```bash
+python main.py
+uvicorn app.main:app --reload
+python -m uvicorn app.main:app --reload
+```
+
+✅ 始终使用：
+```bash
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### 其他 uv 命令
+
+```bash
+# 安装依赖
+uv sync
+
+# 添加新包
+uv add package-name
+
+# 运行脚本
+uv run python script.py
+
+# 运行测试
+uv run pytest
+```

@@ -1,0 +1,20 @@
+[project]
+name = "zhaos-tools"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.116.1",
+    "langflow>=1.5.0.post1",
+    "pydantic>=2.10.6",
+    "pydantic-settings>=2.10.1",
+    "python-multipart>=0.0.20",
+    "pywinauto>=0.6.9",
+    "ruff>=0.12.3",
+    "uvicorn[standard]>=0.35.0",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+default = true

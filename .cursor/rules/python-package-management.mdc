@@ -1,0 +1,35 @@
+---
+alwaysApply: true
+description: Python package management with uv
+---
+
+# Python Package Management
+
+This project uses `uv` for Python package management. Follow these rules:
+
+## Package Installation and Management
+
+- **ALWAYS use `uv` commands** for adding, removing, or updating Python packages
+- **NEVER directly modify** [pyproject.toml](mdc:pyproject.toml) for package dependencies
+- Use `uv add <package>` to add new dependencies
+- Use `uv remove <package>` to remove dependencies
+- Use `uv sync` to synchronize dependencies
+- Use `uv lock` to update the lock file when needed
+
+## Examples
+
+```bash
+# Add a new package
+uv add requests
+
+# Add a development dependency
+uv add --dev pytest
+
+# Remove a package
+uv remove requests
+
+# Sync dependencies
+uv sync
+```
+
+This ensures consistent dependency management and proper lock file updates.

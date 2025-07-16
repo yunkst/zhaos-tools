@@ -1,0 +1,46 @@
+---
+alwaysApply: true
+description: Temporary files and scripts cleanup
+---
+
+# Temporary Files and Scripts Cleanup
+
+When creating temporary files or scripts for testing purposes, always remember to clean them up after use.
+
+## Rules for Temporary Files
+
+- **Always delete temporary files** after testing is complete
+- **Name temporary files clearly** with prefixes like `temp_`, `test_`, or `tmp_`
+- **Document temporary files** in comments if they need to persist temporarily
+- **Never commit temporary files** to version control
+
+## Common Temporary File Patterns
+
+- `temp_*.py` - Temporary Python scripts
+- `test_*.py` - Test scripts (not unit tests)
+- `tmp_*.*` - Any temporary files
+- `debug_*.*` - Debug files
+- `scratch_*.*` - Scratch files for experimentation
+
+## Best Practices
+
+1. Create temporary files in a dedicated temp directory when possible
+2. Use descriptive names that indicate the purpose and temporary nature
+3. Add comments explaining why the file is temporary
+4. Set reminders to clean up temporary files
+5. Consider using `.gitignore` patterns for common temporary file types
+
+## Example
+
+```python
+# temp_api_test.py - TEMPORARY FILE - DELETE AFTER TESTING
+# Testing API endpoint functionality
+
+def test_api():
+    # ... test code ...
+    pass
+
+# TODO: Delete this file after API testing is complete
+```
+
+Remember: Clean code includes cleaning up after yourself!
