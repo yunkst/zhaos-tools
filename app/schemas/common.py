@@ -2,15 +2,18 @@
 通用Pydantic模型 - 共用的请求和响应模型
 """
 
-from typing import Any, Dict, Optional, List
+from typing import Any, Dict, Optional, List, Generic, TypeVar
 from pydantic import BaseModel
 
 
-class ResponseModel(BaseModel):
+T = TypeVar('T')
+
+
+class ResponseModel(BaseModel, Generic[T]):
     """标准API响应模型"""
     success: bool
     message: Optional[str] = None
-    data: Optional[Any] = None
+    data: Optional[T] = None
     error: Optional[str] = None
 
 
@@ -22,10 +25,13 @@ class PaginationModel(BaseModel):
     total_pages: int = 0
 
 
-class PaginatedResponse(ResponseModel):
+class PaginatedResponse(BaseModel, Generic[T]):
     """分页响应模型"""
-    data: Optional[List[Any]] = None
+    success: bool
+    data: Optional[T] = None
     pagination: Optional[PaginationModel] = None
+    message: Optional[str] = None
+    error: Optional[str] = None
 
 
 class SystemInfo(BaseModel):

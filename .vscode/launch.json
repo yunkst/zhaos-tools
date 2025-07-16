@@ -1,0 +1,176 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "🚀 FastAPI 开发模式",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "app.main:app",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000",
+                "--log-level",
+                "info"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "ENVIRONMENT": "development",
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "preLaunchTask": "uv sync",
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "🔧 调试启动脚本 (开发模式)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run.py",
+            "args": [
+                "--mode",
+                "dev",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000",
+                "--no-browser"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "ENVIRONMENT": "development",
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "🏭 FastAPI 生产模式",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "app.main:app",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000",
+                "--log-level",
+                "info"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "ENVIRONMENT": "production",
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "🧪 调试单个API端点",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "app.main:app",
+                "--reload",
+                "--host",
+                "127.0.0.1",
+                "--port",
+                "8001",
+                "--log-level",
+                "debug"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "ENVIRONMENT": "development",
+                "PYTHONPATH": "${workspaceFolder}",
+                "DEBUG": "true"
+            },
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "📊 调试学生管理服务",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/app/services/student_service.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "🤖 调试回复服务",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/app/services/reply_service.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "🗄️ 调试数据库操作",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/app/core/database.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "🔍 调试当前打开的文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+        },
+        {
+            "name": "⚙️ 自定义端口调试",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "app.main:app",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "${input:customPort}",
+                "--log-level",
+                "debug"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "ENVIRONMENT": "development",
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "customPort",
+            "description": "请输入自定义端口号",
+            "default": "9000",
+            "type": "promptString"
+        }
+    ]
+} 

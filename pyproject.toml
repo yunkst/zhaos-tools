@@ -7,6 +7,8 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.116.1",
     "langflow>=1.5.0.post1",
+    "openpyxl>=3.1.5",
+    "pandas>=2.2.3",
     "pydantic>=2.10.6",
     "pydantic-settings>=2.10.1",
     "python-multipart>=0.0.20",

@@ -1,0 +1,122 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "uv sync",
+            "type": "shell",
+            "command": "uv",
+            "args": ["sync"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "uv install",
+            "type": "shell",
+            "command": "uv",
+            "args": ["sync", "--dev"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "启动FastAPI (uv run)",
+            "type": "shell",
+            "command": "uv",
+            "args": [
+                "run",
+                "uvicorn",
+                "app.main:app",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "构建前端",
+            "type": "shell",
+            "command": "yarn",
+            "args": ["build"],
+            "options": {
+                "cwd": "${workspaceFolder}/fronted"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "启动前端开发服务器",
+            "type": "shell",
+            "command": "yarn",
+            "args": ["dev"],
+            "options": {
+                "cwd": "${workspaceFolder}/fronted"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "isBackground": true
+        },
+        {
+            "label": "运行启动脚本 (开发模式)",
+            "type": "shell",
+            "command": "python",
+            "args": ["run.py", "--mode", "dev", "--no-browser"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "isBackground": true
+        },
+        {
+            "label": "清理Python缓存",
+            "type": "shell",
+            "command": "python",
+            "args": ["-c", "import shutil; import os; [shutil.rmtree(root) for root, dirs, files in os.walk('.') for d in dirs if d == '__pycache__']"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+} 

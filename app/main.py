@@ -11,6 +11,8 @@ from pathlib import Path
 from app.core.config import settings
 from app.core.logger import app_logger
 from app.api.v1.students import router as students_router
+from app.api.v1.classes import router as classes_router
+from app.api.v1.checkin import router as checkin_router
 from app.api.v1.system import router as system_router
 
 
@@ -36,7 +38,9 @@ def create_app() -> FastAPI:
     )
     
     # 注册API路由
+    app.include_router(classes_router, prefix="/api/v1", tags=["classes"])
     app.include_router(students_router, prefix="/api/v1", tags=["students"])
+    app.include_router(checkin_router, prefix="/api/v1", tags=["checkin"])
     app.include_router(system_router, prefix="/api/v1", tags=["system"])
     
     # 配置静态文件服务

@@ -27,6 +27,11 @@ class ServiceException(ZhaosToolsException):
     pass
 
 
+class NotFoundException(ServiceException):
+    """资源未找到异常基类"""
+    pass
+
+
 class APIException(ZhaosToolsException):
     """API层异常"""
     pass

@@ -1,5 +1,12 @@
-# Vue 3 + TypeScript + Vite
+# 前端
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 功能介绍
+未来会拓展更多功能和工具。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+###  学生管理
+   1. 添加学生，支持批量导入，记录学生的基础信息：学号，姓名，性别，年龄，班级，手机号，邮箱，QQ，微信，家庭住址，备注，父亲职业，母亲职业。除了姓名必填，其他选填。
+### 打卡管理
+    1. 记录学生的打卡信息 （通过pywinauto 来实现获取学生打卡信息），需要记录打卡时间，打卡信息
+    2. 一键生成评论信息
+    3. 修改评论信息
+    4. 评论生效（控制鼠标键盘在钉钉页面进行评论）
