@@ -8,6 +8,7 @@ from typing import Dict, Any
 from app.core.config import settings
 from app.core.logger import service_logger
 from app.utils.exceptions import ServiceException
+from app.ai import smart_reply_generator, ai_config
 
 
 class ReplyService:
@@ -144,7 +145,29 @@ class ReplyService:
                 'negative_score': 0,
                 'length': len(content)
             }
+    
+    async def generate_smart_reply(self, student_name: str, checkin_content: str) -> str:
+        """生成智能回复"""
+        if not ai_config.enabled:
+            # 回退到模板回复
+            return self.get_random_template()
+        
+        try:
+            result = await smart_reply_generator.run({
+                "student_name": student_name,
+                "checkin_content": checkin_content
+            })
+            
+            if result["success"]:
+                return result["data"]["reply"]
+            else:
+                logger.warning(f"AI回复生成失败: {result['error']}")
+                return self.get_random_template()
+                
+        except Exception as e:
+            logger.error(f"AI回复生成异常: {e}")
+            return self.get_random_template()
 
 
 # 创建全局回复服务实例
-reply_service = ReplyService() 
+reply_service = ReplyService()

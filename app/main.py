@@ -10,10 +10,12 @@ from pathlib import Path
 
 from app.core.config import settings
 from app.core.logger import app_logger
+from app.ai import initialize_ai_module  # 新增
 from app.api.v1.students import router as students_router
 from app.api.v1.classes import router as classes_router
 from app.api.v1.checkin import router as checkin_router
 from app.api.v1.system import router as system_router
+from app.api.v1.config import router as config_router
 
 
 def create_app() -> FastAPI:
@@ -42,6 +44,7 @@ def create_app() -> FastAPI:
     app.include_router(students_router, prefix="/api/v1", tags=["students"])
     app.include_router(checkin_router, prefix="/api/v1", tags=["checkin"])
     app.include_router(system_router, prefix="/api/v1", tags=["system"])
+    app.include_router(config_router, prefix="/api/v1", tags=["config"])  # 新增
     
     # 配置静态文件服务
     frontend_path = settings.frontend_path
@@ -64,6 +67,9 @@ def create_app() -> FastAPI:
         app_logger.info(f"📖 API文档: http://{settings.HOST}:{settings.PORT}/api/docs")
         app_logger.info(f"🗄️ 数据库: {settings.database_path}")
         
+        # 初始化AI模块
+        initialize_ai_module()
+        
         # 如果没有前端文件，提供提示
         if not frontend_path or not frontend_path.exists():
             app_logger.warning("⚠️  前端文件未找到，请构建前端项目")
@@ -78,4 +84,4 @@ def create_app() -> FastAPI:
 
 
 # 创建应用实例
-app = create_app() 
+app = create_app()

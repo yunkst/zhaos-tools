@@ -42,6 +42,10 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "http://127.0.0.1:3000",
         "http://127.0.0.1:5173",
+        "http://127.0.0.1:5174",
+        "http://localhost:5174",
+        "http://localhost:8000",  # 添加这一行
+        "http://127.0.0.1:8000",  # 也建议添加这一行
     ]
     
     # 自动回复配置
@@ -58,10 +62,16 @@ class Settings(BaseSettings):
         "继续保持这种学习热情！🔥"
     ]
     
-    # Langflow 配置
-    LANGFLOW_API_URL: str = "http://localhost:7860"
-    LANGFLOW_FLOW_ID: str = ""
-    LANGFLOW_API_KEY: str = ""
+    # AI配置
+    AI_ENABLED: bool = True
+    OPENAI_API_KEY: str = ""
+    OPENAI_BASE_URL: str = "https://api.openai.com/v1"
+    
+    # Langfuse配置
+    LANGFUSE_ENABLED: bool = False
+    LANGFUSE_SECRET_KEY: str = ""
+    LANGFUSE_PUBLIC_KEY: str = ""
+    LANGFUSE_HOST: str = "https://cloud.langfuse.com"
     
     # PyWinAuto 配置
     AUTOMATION_DELAY: float = 0.5
@@ -122,4 +132,4 @@ class Settings(BaseSettings):
 
 
 # 创建全局配置实例
-settings = Settings() 
+settings = Settings()

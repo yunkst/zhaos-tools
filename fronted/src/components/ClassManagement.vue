@@ -16,13 +16,13 @@
             <el-table-column prop="grade" label="年级" width="120" />
             <el-table-column prop="teacher_name" label="班主任" width="150" />
             <el-table-column prop="student_count" label="学生人数" width="100" />
-            <el-table-column prop="description" label="描述" show-overflow-tooltip />
+            <el-table-column prop="description" label="描述"  show-overflow-tooltip />
             <el-table-column prop="created_at" label="创建时间" width="180">
                 <template #default="scope">
                     {{ formatDate(scope.row.created_at) }}
                 </template>
             </el-table-column>
-            <el-table-column label="操作" width="200" fixed="right">
+            <el-table-column label="操作" width="180" fixed="right">
                 <template #default="scope">
                     <el-button size="small" @click="editClass(scope.row)">编辑</el-button>
                     <el-button size="small" type="info" @click="viewStudents(scope.row)">查看学生</el-button>
