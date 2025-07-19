@@ -55,7 +55,7 @@
         <div class="content-card">
           <div class="card-header">
             <h4>最近打卡记录</h4>
-            <el-button type="text" @click="goToCheckins">查看全部</el-button>
+            <el-button text @click="goToCheckins">查看全部</el-button>
           </div>
           <el-table :data="recentCheckins" style="width: 100%" v-loading="loading">
             <el-table-column prop="student_name" label="学生姓名" width="100" />
@@ -146,23 +146,25 @@ const fetchStats = async () => {
     
     // 获取学生总数
     const studentsRes = await axios.get('/api/v1/students?page=1&page_size=1')
-    stats.value.totalStudents = studentsRes.pagination?.total || 0
+    if (studentsRes.data.code === 200) {
+      stats.value.totalStudents = studentsRes.data.data?.total || 0
+    }
     
     // 获取打卡统计
     const checkinStatsRes = await axios.get('/api/v1/checkins/stats/summary')
-    if (checkinStatsRes.success) {
-      const checkinStats = checkinStatsRes.data
-      stats.value.totalCheckins = checkinStats.total_checkins || 0
-      stats.value.todayCheckins = checkinStats.today_checkins || 0
-      stats.value.replyRate = checkinStats.reply_rate || 0
-      topStudents.value = checkinStats.top_students || []
-      trendData.value = checkinStats.recent_trend || []
+    if (checkinStatsRes.data.success) {
+      const checkinStats = checkinStatsRes.data.data
+      stats.value.totalCheckins = checkinStats.basic_stats?.total_checkins || 0
+      stats.value.todayCheckins = checkinStats.basic_stats?.today_checkins || 0
+      stats.value.replyRate = Math.round((checkinStats.basic_stats?.reply_rate || 0) * 100)
+      topStudents.value = checkinStats.student_ranking || []
+      trendData.value = checkinStats.daily_stats || []
     }
     
     // 获取最近打卡记录
     const recentCheckinsRes = await axios.get('/api/v1/checkins?page=1&page_size=8')
-    if (recentCheckinsRes.success) {
-      recentCheckins.value = recentCheckinsRes.data || []
+    if (recentCheckinsRes.data.success) {
+      recentCheckins.value = recentCheckinsRes.data.data || []
     }
     
   } catch (error) {
@@ -417,4 +419,4 @@ onMounted(() => {
     height: 80px;
   }
 }
-</style> 
+</style>

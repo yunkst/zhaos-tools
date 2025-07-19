@@ -38,7 +38,7 @@
                     </el-tag>
                 </template>
             </el-table-column>
-            <el-table-column prop="age" label="年龄" width="80" sortable="custom" />
+            <el-table-column prop="dynamic_age" label="年龄" width="80" sortable="custom" />
 
             <!-- 班级信息 -->
             <el-table-column v-if="showClassColumn" prop="class_name" label="班级" width="120" />
@@ -74,7 +74,7 @@
         </div>
 
         <!-- 批量编辑对话框 -->
-        <el-dialog v-model="batchEditDialogVisible" title="批量编辑学生" width="500px">
+        <el-dialog :model-value="batchEditDialogVisible" title="批量编辑学生" width="500px" @update:model-value="batchEditDialogVisible = $event">
             <el-form :model="batchEditForm" label-width="120px">
                 <el-form-item label="班级">
                     <el-select v-model="batchEditForm.class_id" placeholder="请选择班级" clearable style="width: 100%">
@@ -99,7 +99,7 @@
         </el-dialog>
 
         <!-- 批量删除确认对话框 -->
-        <el-dialog v-model="batchDeleteDialogVisible" title="批量删除确认" width="400px">
+        <el-dialog :model-value="batchDeleteDialogVisible" title="批量删除确认" width="400px" @update:model-value="batchDeleteDialogVisible = $event">
             <p>确定要删除选中的 {{ selectedStudents.length }} 名学生吗？</p>
             <p style="color: #f56c6c; font-size: 14px;">此操作不可撤销！</p>
             <template #footer>
@@ -221,10 +221,15 @@ const confirmBatchEdit = async () => {
 
         const studentIds = selectedStudents.value.map(s => s.id)
 
+        // 构造批量更新请求数据
+        const updates = studentIds.map(id => ({
+            id: id,
+            data: updateData
+        }))
+
         // 调用批量更新API
-        const response = await axios.patch('/api/v1/students/batch', {
-            student_ids: studentIds,
-            update_data: updateData
+        const response = await axios.post('/api/v1/students/batch/update', {
+            updates: updates
         })
 
         const result = response.data.data
@@ -258,8 +263,8 @@ const confirmBatchDelete = async () => {
         const studentIds = selectedStudents.value.map(s => s.id)
 
         // 调用批量删除API
-        const response = await axios.delete('/api/v1/students/batch', {
-            data: { student_ids: studentIds }
+        const response = await axios.post('/api/v1/students/batch/delete', {
+            student_ids: studentIds
         })
 
         const result = response.data.data
@@ -309,16 +314,20 @@ const handleSortChange = (sortInfo) => {
 // 工具方法
 const getGenderTagType = (gender) => {
     switch (gender) {
-        case 'male': return 'primary'
-        case 'female': return 'success'
+        case 'male':
+        case '男': return 'primary'
+        case 'female':
+        case '女': return 'success'
         default: return 'info'
     }
 }
 
 const getGenderText = (gender) => {
     switch (gender) {
-        case 'male': return '男'
-        case 'female': return '女'
+        case 'male':
+        case '男': return '男'
+        case 'female':
+        case '女': return '女'
         default: return '未知'
     }
 }

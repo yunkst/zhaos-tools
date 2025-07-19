@@ -77,6 +77,28 @@ class DatabaseManager:
                     )
                 ''')
                 
+                # 创建新的打卡记录表（checkins）
+                cursor.execute('''
+                    CREATE TABLE IF NOT EXISTS checkins (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        student_id TEXT NOT NULL,
+                        checkin_date DATE NOT NULL,
+                        checkin_time TIME,
+                        content TEXT NOT NULL,
+                        mood TEXT,
+                        weather TEXT,
+                        location TEXT,
+                        photos TEXT,
+                        reply TEXT,
+                        reply_time TIMESTAMP,
+                        teacher_id INTEGER,
+                        status TEXT DEFAULT 'active',
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (student_id) REFERENCES students (student_id)
+                    )
+                ''')
+                
                 # 创建系统配置表
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS system_config (
@@ -240,4 +262,4 @@ class DatabaseManager:
 
 
 # 创建全局数据库管理器实例
-db_manager = DatabaseManager() 
+db_manager = DatabaseManager()

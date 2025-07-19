@@ -1,0 +1,182 @@
+/* 通用组件样式 */
+
+/* 管理页面通用样式 */
+.management-container {
+  padding: 20px;
+}
+
+.management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.management-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.management-pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* 对话框样式 */
+.dialog-footer {
+  display: flex;
+  gap: 10px;
+}
+
+.dialog-content {
+  min-height: 400px;
+}
+
+/* 搜索栏样式 */
+.search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-input {
+  width: 300px;
+}
+
+/* 表单样式 */
+.form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-col {
+  flex: 1;
+}
+
+/* 操作按钮组样式 */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* 导入对话框样式 */
+.import-dialog {
+  text-align: center;
+}
+
+.import-tips {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f5f7fa;
+  border-radius: 4px;
+  color: #606266;
+}
+
+.import-tips h4 {
+  margin: 0 0 10px 0;
+  color: #409eff;
+}
+
+.import-tips ul {
+  text-align: left;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.import-tips li {
+  margin-bottom: 5px;
+}
+
+/* 视图模式切换样式 */
+.view-mode-selector {
+  margin-bottom: 20px;
+}
+
+.class-selector {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 表格容器样式 */
+.table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* 加载状态样式 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* 空状态样式 */
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #909399;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+  .management-container {
+    padding: 10px;
+  }
+  
+  .management-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  
+  .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-input {
+    width: 100%;
+  }
+  
+  .action-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* 动画效果 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-enter-from {
+  transform: translateX(-100%);
+}
+
+.slide-leave-to {
+  transform: translateX(100%);
+}

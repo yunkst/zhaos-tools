@@ -156,13 +156,13 @@
                 readonly
               />
               <el-button 
-                type="text" 
+                text 
                 @click="showFullKey = !showFullKey"
                 style="margin-left: 10px;"
               >
                 {{ showFullKey ? '隐藏' : '显示' }}
               </el-button>
-              <el-button type="text" @click="copyToClipboard(currentKeyDetail.api_key)">
+              <el-button text @click="copyToClipboard(currentKeyDetail.api_key)">
                 复制
               </el-button>
             </div>
@@ -380,12 +380,13 @@ const getProviderTagType = (provider: string) => {
   const typeMap: Record<string, string> = {
     openai: 'primary',
     claude: 'success',
-    qianwen: 'warning',
+    qwen: 'warning',
     baidu: 'info',
     zhipu: 'danger',
-    custom: ''
+    kimi: 'info',
+    custom: 'info'
   }
-  return typeMap[provider] || ''
+  return typeMap[provider] || 'info'
 }
 
 // 获取服务商标签
@@ -393,9 +394,10 @@ const getProviderLabel = (provider: string) => {
   const labelMap: Record<string, string> = {
     openai: 'OpenAI',
     claude: 'Claude',
-    qianwen: '通义千问',
+    qwen: '通义千问',
     baidu: '百度文心',
     zhipu: '智谱AI',
+    kimi: 'Kimi',
     custom: '自定义'
   }
   return labelMap[provider] || provider.toUpperCase()
