@@ -45,6 +45,11 @@ def setup_logger(
     return logger
 
 
+def get_logger(name: str = "zhaos_tools") -> logging.Logger:
+    """获取日志记录器"""
+    return setup_logger(name)
+
+
 # 创建应用主日志记录器
 app_logger = setup_logger("zhaos_tools")
 
@@ -52,4 +57,4 @@ app_logger = setup_logger("zhaos_tools")
 database_logger = setup_logger("zhaos_tools.database")
 api_logger = setup_logger("zhaos_tools.api")
 service_logger = setup_logger("zhaos_tools.service")
-utils_logger = setup_logger("zhaos_tools.utils") 
+utils_logger = setup_logger("zhaos_tools.utils")

@@ -155,9 +155,9 @@ def main():
         help="不启动前端开发服务器"
     )
     parser.add_argument(
-        "--no-browser", 
+        "--browser", 
         action="store_true",
-        help="不自动打开浏览器"
+        help="自动打开浏览器"
     )
     
     args = parser.parse_args()
@@ -204,7 +204,7 @@ def main():
             return
         
         # 自动打开浏览器
-        if not args.no_browser:
+        if args.browser:
             if args.mode == "dev" and frontend_process:
                 # 开发模式打开前端开发服务器
                 open_browser("http://localhost:5173")
@@ -246,4 +246,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main() 
+    main()

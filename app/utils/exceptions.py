@@ -32,6 +32,11 @@ class NotFoundException(ServiceException):
     pass
 
 
+class NotFoundError(NotFoundException):
+    """资源未找到错误 - 兼容性别名"""
+    pass
+
+
 class APIException(ZhaosToolsException):
     """API层异常"""
     pass
@@ -60,4 +65,4 @@ class InvalidDataException(ValidationException):
     """无效数据异常"""
     
     def __init__(self, field: str, value: str):
-        super().__init__(f"无效的{field}: {value}", "INVALID_DATA") 
+        super().__init__(f"无效的{field}: {value}", "INVALID_DATA")
