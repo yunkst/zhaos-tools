@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Calendar, DataBoard, Refresh, School, User } from '@element-plus/icons-vue'
+import { Calendar, DataBoard, Key, Refresh, School, User } from '@element-plus/icons-vue'
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -55,6 +55,12 @@ onMounted(() => {
               <Calendar />
             </el-icon>
             <span>打卡管理</span>
+          </el-menu-item>
+          <el-menu-item index="/ai-keys">
+            <el-icon>
+              <Key />
+            </el-icon>
+            <span>AI Key管理</span>
           </el-menu-item>
         </el-menu>
       </el-aside>

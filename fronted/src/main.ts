@@ -6,6 +6,7 @@ import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 import App from "./App.vue";
+import AIKeyManagement from "./components/AIKeyManagement.vue";
 import CheckinManagement from "./components/CheckinManagement.vue";
 import ClassManagement from "./components/ClassManagement.vue";
 import Dashboard from "./components/Dashboard.vue";
@@ -64,6 +65,12 @@ const routes = [
     component: CheckinManagement,
     name: "CheckinManagement",
     meta: { title: "打卡管理" },
+  },
+  {
+    path: "/ai-keys",
+    component: AIKeyManagement,
+    name: "AIKeyManagement",
+    meta: { title: "AI Key管理" },
   },
 ];
 

@@ -11,3 +11,4 @@ wheels/
 *.xlsx
 *.db
 *.log
+.env
