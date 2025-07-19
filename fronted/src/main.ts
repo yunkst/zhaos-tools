@@ -11,6 +11,8 @@ import CheckinManagement from "./components/CheckinManagement.vue";
 import ClassManagement from "./components/ClassManagement.vue";
 import Dashboard from "./components/Dashboard.vue";
 import StudentManagement from "./components/StudentManagement.vue";
+import StudentLogs from "./components/StudentLogs.vue";
+import TeacherDiaries from "./components/TeacherDiaries.vue";
 
 // 配置axios
 axios.defaults.baseURL = "http://localhost:8000";
@@ -65,6 +67,18 @@ const routes = [
     component: CheckinManagement,
     name: "CheckinManagement",
     meta: { title: "打卡管理" },
+  },
+  {
+    path: "/student-logs",
+    component: StudentLogs,
+    name: "StudentLogs",
+    meta: { title: "学生日志" },
+  },
+  {
+    path: "/teacher-diaries",
+    component: TeacherDiaries,
+    name: "TeacherDiaries",
+    meta: { title: "教师日记" },
   },
   {
     path: "/ai-keys",

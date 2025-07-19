@@ -119,6 +119,33 @@ class DatabaseManager:
                     )
                 ''')
                 
+                # 创建学生日志表
+                cursor.execute('''
+                    CREATE TABLE IF NOT EXISTS student_logs (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        student_id TEXT NOT NULL,
+                        title TEXT NOT NULL,
+                        content TEXT NOT NULL,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (student_id) REFERENCES students (student_id)
+                    )
+                ''')
+                
+                # 创建教师日记表
+                cursor.execute('''
+                    CREATE TABLE IF NOT EXISTS teacher_diaries (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        title TEXT NOT NULL,
+                        content TEXT NOT NULL,
+                        markdown_content TEXT,
+                        images TEXT,
+                        tags TEXT,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )
+                ''')
+                
                 # 检查是否需要迁移现有数据
                 self._migrate_database(cursor)
                 

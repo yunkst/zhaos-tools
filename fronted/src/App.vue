@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Calendar, DataBoard, Key, Refresh, School, User } from '@element-plus/icons-vue'
+import { Calendar, DataBoard, Key, Refresh, School, User, Document, EditPen } from '@element-plus/icons-vue'
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -55,6 +55,18 @@ onMounted(() => {
               <Calendar />
             </el-icon>
             <span>打卡管理</span>
+          </el-menu-item>
+          <el-menu-item index="/student-logs">
+            <el-icon>
+              <Document />
+            </el-icon>
+            <span>学生日志</span>
+          </el-menu-item>
+          <el-menu-item index="/teacher-diaries">
+            <el-icon>
+              <EditPen />
+            </el-icon>
+            <span>教师日记</span>
           </el-menu-item>
           <el-menu-item index="/ai-keys">
             <el-icon>

@@ -17,6 +17,8 @@ from app.api.v1.checkin import router as checkin_router
 from app.api.v1.system import router as system_router
 from app.api.v1.config import router as config_router
 from app.api.v1.ai_keys import router as ai_keys_router
+from app.api.v1.student_logs import router as student_logs_router
+from app.api.v1.teacher_diaries import router as teacher_diaries_router
 
 
 def create_app() -> FastAPI:
@@ -46,7 +48,9 @@ def create_app() -> FastAPI:
     app.include_router(checkin_router, prefix="/api/v1", tags=["checkin"])
     app.include_router(system_router, prefix="/api/v1", tags=["system"])
     app.include_router(config_router, prefix="/api/v1", tags=["config"])
-    app.include_router(ai_keys_router, prefix="/api/v1", tags=["ai-keys"])  # 新增
+    app.include_router(ai_keys_router, prefix="/api/v1", tags=["ai-keys"])
+    app.include_router(student_logs_router, prefix="/api/v1", tags=["student-logs"])
+    app.include_router(teacher_diaries_router, prefix="/api/v1/teacher-diaries", tags=["teacher-diaries"])
     
     # 配置静态文件服务
     frontend_path = settings.frontend_path
