@@ -1,0 +1,55 @@
+name: Build and Release
+
+# 触发条件：创建以 v 开头的标签时（如 v1.0.0）
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. 设置 Flutter 环境
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.9.2'
+          channel: 'stable'
+          cache: true
+
+      # 3. 获取依赖
+      - name: Install dependencies
+        working-directory: ./app
+        run: flutter pub get
+
+      # 4. 构建 Android APK
+      - name: Build Android APK
+        working-directory: ./app
+        run: flutter build apk --release
+
+      # 5. 获取版本号
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      # 6. 创建 Release 并上传 APK
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Teacher Tools ${{ steps.get_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+          files: |
+            app/build/app/outputs/flutter-apk/app-release.apk
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

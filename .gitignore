@@ -1,0 +1,65 @@
+# 数据文件
+data/
+*.xlsx
+*.xls
+
+# IDE配置
+.claude/
+.bmad-core/
+.vscode/
+.idea/
+
+# 系统文件
+nul
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 数据文件（扩展保护）
+*.csv
+*.dat
+*.db
+*.sqlite
+*.sqlite3
+
+# Flutter/Android 构建产物
+.gradle/
+.kotlin/
+*.log
+*.apk
+*.aab
+
+# Flutter 特定
+**/flutter/ephemeral/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/pub/
+build/
